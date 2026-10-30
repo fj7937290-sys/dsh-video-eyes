@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Video Eyes",
+    "description": "Video understanding for text-only models: samples frames at a 0.1-10s interval into timecoded contact sheets, extracts the audio track into a timestamped transcript, and describes each sheet itself with an image-capable model. Works on its own without any other vision plugin."
+  }
+}

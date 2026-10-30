@@ -1,0 +1,52 @@
+{
+  "name": "dsh-video-eyes",
+  "version": "1.2.1",
+  "description": "让纯文本模型看懂视频：按 0.1–10 秒可调间隔抽帧拼成带真实时间码的总览图，提取音轨转写成带时间戳的台词，并自行调用视觉模型逐页描述画面。Video sampling for text-only agents: timecoded frame sheets plus a timestamped transcript, self-describing without any vision plugin.",
+  "license": "MIT",
+  "type": "module",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "video",
+    "frames",
+    "contact-sheet",
+    "transcript",
+    "speech-to-text",
+    "multimodal",
+    "ffmpeg"
+  ],
+  "engines": {
+    "node": ">=18",
+    "dsh": ">=0.1.5"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

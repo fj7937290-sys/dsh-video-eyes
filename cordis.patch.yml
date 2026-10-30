@@ -1,0 +1,4 @@
+# dsh-video-eyes bundle layer: inserts the video sampling Host plugin.
+- insert:
+    - id: video-eyes
+      name: 'dsh-video-eyes'

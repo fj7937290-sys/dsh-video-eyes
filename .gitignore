@@ -1,0 +1,9 @@
+﻿# the bundled ffmpeg is local-only; published installs resolve ffmpeg from PATH or FFMPEG_PATH
+bin/ffmpeg.exe
+bin/ffmpeg
+
+# artifacts
+node_modules/
+*.tgz
+_video-eyes/
+.video-eyes/
