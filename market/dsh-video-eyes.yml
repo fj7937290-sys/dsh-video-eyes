@@ -1,5 +1,5 @@
-url: https://github.com/OWNER/dsh-video-eyes
-name: OWNER/dsh-video-eyes
+url: https://github.com/fj7937290-sys/dsh-video-eyes
+name: fj7937290-sys/dsh-video-eyes
 category: vision
 description:
   en: 'Read a video with a text-only model: sample frames at a 0.1-10 second interval into contact sheets where every frame carries its real timecode, extract the audio track into a timestamped transcript, and describe each sheet with an image-capable model in the host, so the plugin works on its own without any other vision plugin. A composer slider sets the sampling interval, and pure audio files are transcribed without frame sampling.'

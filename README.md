@@ -14,7 +14,7 @@
 装插件：
 
 ```sh
-dsh plugin --profile web add github:<owner>/dsh-video-eyes
+dsh plugin --profile web add github:fj7937290-sys/dsh-video-eyes
 ```
 
 用 skill（复制到任意 agent 的技能目录，或在 DSH 里放到工作区 `.dsh/skills/`）：
