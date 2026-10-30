@@ -1,6 +1,6 @@
 {
   "name": "dsh-video-eyes",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "让纯文本模型看懂视频：按 0.1–10 秒可调间隔抽帧拼成带真实时间码的总览图，提取音轨转写成带时间戳的台词，并自行调用视觉模型逐页描述画面。Video sampling for text-only agents: timecoded frame sheets plus a timestamped transcript, self-describing without any vision plugin.",
   "license": "MIT",
   "type": "module",

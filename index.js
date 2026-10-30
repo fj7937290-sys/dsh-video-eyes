@@ -1220,7 +1220,10 @@ async function runVideoTool(ctx, settings, args, exec) {
 
   const pageSize = columns * rows
   // A pure audio file has no frames to sample; it still gets transcribed.
-  const totalFrames = meta.hasVideo ? Math.max(1, Math.floor(meta.durationSec / interval)) : 0
+  // ffmpeg's fps filter emits round(duration / interval) frames — measured on
+  // 8.02s@0.5 (16), 87.33s@10 (9) and 87.33s@9 (10). floor undercounted by one,
+  // which made tpad append an extra page of blank cells.
+  const totalFrames = meta.hasVideo ? Math.max(1, Math.round(meta.durationSec / interval)) : 0
   const sheetCount = meta.hasVideo ? Math.ceil(totalFrames / pageSize) : 0
 
   if (meta.hasVideo && sheetCount > maxSheets) {
