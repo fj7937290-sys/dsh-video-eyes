@@ -1,0 +1,32 @@
+{
+  "name": "video-eyes",
+  "version": "1.0.0",
+  "description": "Video understanding for text-only agents: frame contact sheets at a 0.1-10s interval plus a timestamped speech transcript, aligned on one timeline.",
+  "license": "MIT",
+  "bin": {
+    "video-eyes": "./scripts/video-eyes.mjs"
+  },
+  "files": [
+    "scripts",
+    "references",
+    "SKILL.md",
+    "README.md",
+    "_meta.json"
+  ],
+  "scripts": {
+    "help": "node ./scripts/video-eyes.mjs help"
+  },
+  "keywords": [
+    "video",
+    "frames",
+    "contact-sheet",
+    "transcript",
+    "speech-to-text",
+    "ffmpeg",
+    "vision",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

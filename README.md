@@ -4,6 +4,28 @@
 
 ![示例：2 分钟竖屏视频，每 2 秒一帧，4×4 拼图，每格左上角是真实时间码](docs/sample-real-video.jpg)
 
+## 仓库里有两个东西
+
+| 形态 | 位置 | 给谁用 |
+|---|---|---|
+| **DSH 插件** | 仓库根目录（`package.json` / `index.js` / `client.js` / `cordis.patch.yml`） | DeepSeek Harness：注册 `read_video` / `read_video_transcript`，外加输入框上方的间隔滑块 |
+| **通用 skill** | `skills/video-eyes/` | 任何 agent（Claude Code / Codex / Cursor / 自建脚本）：纯 Node + ffmpeg 的命令行实现，无第三方依赖 |
+
+装插件：
+
+```sh
+dsh plugin --profile web add github:<owner>/dsh-video-eyes
+```
+
+用 skill（复制到任意 agent 的技能目录，或在 DSH 里放到工作区 `.dsh/skills/`）：
+
+```sh
+cp -r skills/video-eyes <你的工作区>/.dsh/skills/
+node <你的工作区>/.dsh/skills/video-eyes/scripts/video-eyes.mjs run demo.mp4 --interval 0.5
+```
+
+两者的抽帧与转写逻辑一致，产物格式也一致；插件多一个 `describe`（自己调视觉模型描述画面）。
+
 ## 工具
 
 | 工具 | 说明 |
