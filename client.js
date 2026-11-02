@@ -12,8 +12,37 @@ window.__ModuleLoader__.load({
     const h = React.createElement
 
     const ROUTE = '/_dsh/video-eyes/interval'
+    const COLLAPSE_KEY = 'dsh-video-eyes:interval-collapsed'
+
+    const btnStyle = {
+      fontSize: 11,
+      padding: '1px 7px',
+      borderRadius: 4,
+      border: '1px solid currentColor',
+      background: 'transparent',
+      color: 'inherit',
+      cursor: 'pointer',
+      whiteSpace: 'nowrap',
+    }
+
+    function readCollapsed() {
+      try {
+        return window.localStorage.getItem(COLLAPSE_KEY) === '1'
+      } catch {
+        return false
+      }
+    }
+
+    function writeCollapsed(value) {
+      try {
+        window.localStorage.setItem(COLLAPSE_KEY, value ? '1' : '0')
+      } catch {
+        // storage disabled — collapsing just won't persist
+      }
+    }
 
     function IntervalSlider() {
+      const [collapsed, setCollapsed] = React.useState(readCollapsed)
       const [state, setState] = React.useState(null)
       const [offline, setOffline] = React.useState(false)
       const timer = React.useRef(null)
@@ -46,6 +75,36 @@ window.__ModuleLoader__.load({
           }).catch(() => {})
         }, 180)
       }, [])
+
+      const toggle = () => {
+        const next = !collapsed
+        setCollapsed(next)
+        writeCollapsed(next)
+      }
+
+      // Collapsed: one small chip that reopens the slider.
+      if (collapsed) {
+        const shown = state ? Number(state.interval ?? 0.5).toFixed(1) + 's' : '—'
+        return h(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '2px 12px 6px',
+              fontSize: 12,
+              color: 'inherit',
+              userSelect: 'none',
+            },
+          },
+          h(
+            'button',
+            { key: 'open', type: 'button', onClick: toggle, title: '展开抽帧间隔', style: btnStyle },
+            `⏱ 抽帧 ${shown} ▸`,
+          ),
+        )
+      }
 
       if (offline || !state) {
         return h(
@@ -134,6 +193,17 @@ window.__ModuleLoader__.load({
               '恢复默认',
             )
           : null,
+        h(
+          'button',
+          {
+            key: 'collapse',
+            type: 'button',
+            onClick: toggle,
+            title: '收起抽帧间隔（下次打开仍保持收起）',
+            style: { ...btnStyle, marginLeft: 'auto' },
+          },
+          '收起 ▴',
+        ),
       )
     }
 
